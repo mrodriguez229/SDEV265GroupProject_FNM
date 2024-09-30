@@ -31,9 +31,9 @@ class TaskManagerApp(tk.Tk):
         self.sidebar = tk.Frame(self, bg=self.themes[self.theme]["bg"], width=200, bd=2, relief="ridge")
         self.sidebar.pack(side=tk.LEFT, fill=tk.Y, padx=0, pady=0)
         logo_image = tk.PhotoImage(file="assets/logo.png").subsample(3, 3)  # Load and resize logo
-        logo_label = tk.Label(self.sidebar, image=logo_image, bg=self.themes[self.theme]["bg"], bd=0)
-        logo_label.image = logo_image  # Keep a reference to the image
-        logo_label.pack(pady=(10, 20))  # Add logo to sidebar
+        self.logo_label = tk.Label(self.sidebar, image=logo_image, bg=self.themes[self.theme]["bg"], bd=0)
+        self.logo_label.image = logo_image  # Keep a reference to the image
+        self.logo_label.pack(pady=(10, 20))  # Add logo to sidebar
         # Button style definition for the sidebar buttons
         button_style = {"width": 15, "height": 1, "bg": self.themes[self.theme]["bg"], 
                         "fg": self.themes[self.theme]["fg"], "relief": "raised", "bd": 2, "anchor": "center"}
@@ -144,6 +144,7 @@ class TaskManagerApp(tk.Tk):
         self.theme = "light" if self.mode_var.get() == "Light Mode" else "dark"
         current_theme = self.themes[self.theme]
         self.sidebar.config(bg=current_theme["bg"], bd=2, relief="ridge")
+        self.logo_label.config(bg=current_theme["bg"])
         self.spacer.config(bg=current_theme["bg"])
         self.main_frame.config(bg=current_theme["bg"], bd=2, relief="ridge")
         self.my_tasks_frame.config(bg=current_theme["bg"])
